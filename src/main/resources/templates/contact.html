@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+    <!-- Bootstrap CSS (optional if already linked globally) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- Page content -->
+<section class="py-5" th:fragment="contact">
+    <div class="container px-5">
+        <!-- Contact form -->
+        <div class="bg-light rounded-4 py-5 px-4 px-md-5">
+            <div class="text-center mb-5">
+                <div class="feature bg-primary bg-gradient-primary-to-secondary text-white rounded-3 mb-3">
+                    <i class="bi bi-envelope"></i>
+                </div>
+                <h1 class="fw-bolder">Get in touch</h1>
+                <p class="lead fw-normal text-muted mb-0">Let's work together!</p>
+            </div>
+
+            <div class="row gx-5 justify-content-center">
+                <div class="col-lg-8 col-xl-6">
+                    <!-- Success message -->
+                    <div th:if="${success}" class="alert alert-success text-center mb-4">
+                        Form submitted successfully!
+                    </div>
+
+                    <!-- Contact Form -->
+                    <form th:action="@{/contact/submit}" method="post" th:object="${contactForm}">
+                        <!-- Name input -->
+                        <div class="form-floating mb-3">
+                            <input class="form-control" th:field="*{name}" placeholder="Enter your name..." />
+                            <label for="name">Full name</label>
+                        </div>
+
+                        <!-- Email address input -->
+                        <div class="form-floating mb-3">
+                            <input class="form-control" th:field="*{email}" type="email" placeholder="name@example.com" />
+                            <label for="email">Email address</label>
+                        </div>
+
+                        <!-- Phone number input -->
+                        <div class="form-floating mb-3">
+                            <input class="form-control" th:field="*{phone}" type="tel" placeholder="(123) 456-7890" />
+                            <label for="phone">Phone number</label>
+                        </div>
+
+                        <!-- Message input -->
+                        <div class="form-floating mb-3">
+                            <textarea class="form-control" th:field="*{message}" placeholder="Enter your message here..." style="height: 10rem"></textarea>
+                            <label for="message">Message</label>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="d-grid">
+                            <button class="btn btn-primary btn-lg" type="submit">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>
